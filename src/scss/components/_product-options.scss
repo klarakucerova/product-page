@@ -5,6 +5,19 @@
 
 .product-option {
     margin: 2rem 0;
+
+    .label {
+        font-size: rem(15px);
+        font-weight: $font-weight-semibold;
+        margin: 0;
+    }
+
+    .option__label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: .5rem;
+    }
 }
 
 .options {
@@ -41,15 +54,16 @@
     }
 
     .option-btn {
-        border: 1px solid transparent;
+        border: 3px solid $white;
         border-radius: 50%;
         height: rem(40px);
+        outline: 1px solid transparent;
         overflow: hidden;
         padding: 0;
         width: rem(40px);
 
         &.active {
-            border-color: $black;
+            outline-color: $black;
         }
     }
 

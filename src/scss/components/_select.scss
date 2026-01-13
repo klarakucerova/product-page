@@ -1,0 +1,17 @@
+@use '../functions/rem' as *;
+@use '../_vars' as *;
+@use '../mixins/breakpoint' as *;
+
+.select {
+    position: relative;
+    width: 100%;
+
+    &__chevron {
+        font-size: rem(12px);
+        inset-inline-end: 1rem;
+        pointer-events: none;
+        position: absolute;
+        top: 50%;
+        transform: rotate(90deg) translateX(-50%);
+    }
+}

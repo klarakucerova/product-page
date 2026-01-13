@@ -93,11 +93,9 @@ h3 {
 }
 
 h4 {
-    font-family:  $font-base;
     font-size: $heading-four;
-    font-weight: $font-weight-bold;
+    font-weight: $font-weight-medium;
     margin-bottom: .5rem;
-    text-transform: uppercase;
 }
 
 h5 {
@@ -175,14 +173,12 @@ select {
 }
 
 select {
-    // background: url('images/icons/icon-chevron.svg');
-    background-repeat: no-repeat;
-    background-position: calc(100% - 10px) center;
-    background-size: 10px;
+    border-radius: .5rem;
     max-width: 100%;
 
     &:focus-visible {
         border-color: $grey;
+        border-radius: .5rem;
         outline: none;
     }
 }

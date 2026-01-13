@@ -3,9 +3,9 @@
 @use 'sass:color';
 
 @mixin button() {
-    background-color: rgba($white, .3);
-    border: 0;
-    box-shadow: 0 .4rem .6rem rgba(0, 0, 0, 0);
+    background-color: $blue;
+    border: 1px solid $blue;
+    border-radius: rem(8px);
     color: $white;
     cursor: pointer;
     display: inline-block;
@@ -13,7 +13,7 @@
     font-weight: $font-weight-medium;
     letter-spacing: rem(.3px);
     line-height: 1;
-    padding: rem(12px) 2rem;
+    padding: .5rem 1rem;
     text-align: center;
     text-transform: uppercase;
     transition: all .4s ease-in-out;

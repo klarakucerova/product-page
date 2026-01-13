@@ -3,6 +3,8 @@
 @use '../mixins/breakpoint' as *;
 
 .product {
+    margin-bottom: 6rem;
+
     .description {
         color: $grey;
         line-height: 1.6;
@@ -13,5 +15,40 @@
         li {
             margin-bottom: 0;
         }
+    }
+}
+
+.product-image {
+    position: sticky;
+    text-align: center;
+    top: 2rem;
+}
+
+.product-actions {
+    background-color: $white;
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.05);
+    padding: 2rem 2rem;
+    bottom: 0;
+    left: 0;
+    position: fixed;
+    right: 0;
+
+    .inner {
+        align-items: center;
+        display: flex;
+        justify-content: flex-end;
+        margin: 0 auto;
+        max-width: $max-width;
+    }
+
+    .actions {
+        display: flex;
+        gap: .5rem;
+    }
+
+    .price {
+        font-size: rem(18px);
+        font-weight: $font-weight-bold;
+        margin-right: 2rem;
     }
 }

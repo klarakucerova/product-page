@@ -1,0 +1,85 @@
+@use '../functions/rem' as *;
+@use '../_vars' as *;
+@use '../mixins/breakpoint' as *;
+
+.modal {
+    &__overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 5;
+        opacity: 0;
+        animation: fadeIn 0.3s forwards;
+    }
+
+    &__sidebar {
+        background: $white;
+        color: $grey-dark;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        left: 100%;
+        padding: 4rem 2rem;
+        position: fixed;
+        top: 0;
+        transition: all 0.3s ease-in-out;
+        max-width: 35rem;
+        width: 100%;
+        z-index: 10;
+
+        &.open {
+            left: calc(100% - 35rem);
+        }
+    }
+
+    &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        h2 {
+            color: $black;
+            font-size: rem(20px);
+        }
+    }
+
+    &__close {
+        background: none;
+        border: none;
+        font-size: rem(22px);
+        cursor: pointer;
+        padding: 0;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 1.5rem;
+        right: 2rem;
+    }
+
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.help-link {
+    background: none;
+    border: none;
+    color: $blue;
+    cursor: pointer;
+    font-size: rem(14px);
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

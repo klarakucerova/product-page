@@ -44,6 +44,7 @@ Text Domain: surfboard-volume-calculator
 // Components
 // ------------------------------------------------
 @use 'components/buttons';
+@use 'components/select';
 @use 'components/grid';
 @use 'components/list';
 @use 'components/container';
@@ -53,6 +54,7 @@ Text Domain: surfboard-volume-calculator
 @use 'components/icons';
 @use 'components/product';
 @use 'components/product-options';
+@use 'components/modal';
 
 // Global
 // ------------------------------------------------

@@ -3,6 +3,16 @@
 @use '../mixins/breakpoint' as *;
 @use '../mixins/button' as *;
 
-.button {
+.btn {
     @include button();
+
+    &--primary {
+        background-color: $blue;
+    }
+    
+    &--secondary {
+        background-color: $white;
+        border: 1px solid $blue;
+        color: $blue;
+    }
 }
