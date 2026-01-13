@@ -1,0 +1,17 @@
+@use '../functions/rem' as *;
+@use '../_vars' as *;
+@use '../mixins/breakpoint' as *;
+
+.list {
+    &--unstyle { 
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    &--inline {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+}

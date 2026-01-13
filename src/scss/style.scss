@@ -1,0 +1,60 @@
+/*!
+Theme Name: Surfboard Volume Calculator
+Author: Klara Kucerova
+Author URI: https://pixelsandbeyond.io
+Description: A simple surfboard volume calculator built with React and Vite.
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: surfboard-volume-calculator
+*/
+
+@use 'vars';
+
+// Functions
+// ------------------------------------------------
+@use 'functions/rem';
+
+// Mixins
+// ------------------------------------------------
+@use 'mixins/breakpoint';
+@use 'mixins/clearfix';
+@use 'mixins/accessible-hide';
+@use 'mixins/button';
+
+// Reset
+// ------------------------------------------------
+@use 'modern-normalize';
+
+// Base
+// ------------------------------------------------
+@use 'base/elements';
+
+// Vendor
+// ------------------------------------------------
+
+// Layouts
+// ------------------------------------------------
+@use 'layouts/header';
+@use 'layouts/footer';
+
+// Pages
+// ------------------------------------------------
+
+// Components
+// ------------------------------------------------
+@use 'components/buttons';
+@use 'components/grid';
+@use 'components/list';
+@use 'components/container';
+@use 'components/typography';
+@use 'components/spacing';
+@use 'components/cards';
+@use 'components/icons';
+@use 'components/product';
+@use 'components/product-options';
+
+// Global
+// ------------------------------------------------
+@use 'global/utility-classes';
+

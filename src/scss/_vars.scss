@@ -1,0 +1,67 @@
+@use 'sass:math';
+
+// Base unit
+// ------------------------------------------------
+$base-unit: 8px;
+
+// Grid settings applied for the bourbon neat library
+// ------------------------------------------------
+$column: 70px;
+$gutter: 30px;
+$grid-columns: 12;
+$max-width: 1200px;
+
+// Mixin vars
+// ------------------------------------------------
+
+// Colour palette
+// ------------------------------------------------
+$white: #fff;
+$black: #000;
+$grey: #6F6F6F;
+$grey-dark: #4D4D4D;
+$grey-light: #DCDCDC;
+$red: red;
+$blue: #0071e3;
+$blue-text: #06c;
+$sky-blue: #CAD8DF;
+$silver: #E2E4E5;
+$starlight: #EDE4D5;
+$midnight: #303641;
+
+$color-primary: $grey;
+
+$shadow: 0 0 28px 0 rgba(0, 0, 0, .1);
+
+// Main Typographic Heading sizes
+// ------------------------------------------------
+$font-size-base: 16px;
+
+$heading-one: 56px;
+$heading-two: 36px;
+$heading-three: 18px;
+$heading-four: 14px;
+$heading-five: 12px;
+$heading-six: 14px;
+
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+
+$font-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+
+// Common breakpoints
+// ------------------------------------------------
+$base-font-size: 16px;
+
+$breakpoints: (
+    small: math.div(480px, $base-font-size) * 1rem,
+    medium: math.div(768px, $base-font-size) * 1rem,
+    mediumlg: math.div(900px, $base-font-size) * 1rem,
+    large: math.div(1200px, $base-font-size)* 1rem
+);
+
+

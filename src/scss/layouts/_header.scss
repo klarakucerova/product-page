@@ -1,0 +1,21 @@
+@use '../functions/rem' as *;
+@use '../_vars' as *;
+@use '../mixins/breakpoint' as *;
+
+.header {
+    max-width: $max-width;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+.logo {
+    align-items: center;
+    display: flex;
+    font-size: rem(20px);
+    font-weight: $font-weight-bold;
+    letter-spacing: .011em;
+
+    .icon-svg--logo {
+        margin-right: .5rem;
+    }
+}

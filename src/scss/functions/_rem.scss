@@ -1,0 +1,15 @@
+@use 'sass:math';
+
+@function rem($value) {
+  @if math.is-unitless($value) {
+      @return $value; // Return unitless values as-is
+  } @else if math.unit($value) == px {
+      $base-font-size: 16px; // Default base font size
+      @return #{math.div($value, $base-font-size)}rem;
+  } @else if $value == 0 {
+      @return 0;
+  } @else {
+      @warn "The value `#{$value}` is not a valid px value.";
+      @return $value;
+  }
+}

@@ -1,0 +1,47 @@
+@use '../functions/rem' as *;
+@use '../_vars' as *;
+
+// SVG icons in sprite
+[class^="icon-svg-"],
+[class*="icon-svg-"] {
+    fill: $black;
+    height: 1em;
+    transition: all .4s ease;
+    width: 1em;
+
+    &:hover {
+        pointer-events: all;
+    }
+}
+
+.icon-svg--logo {
+    font-size: rem(16px);
+}
+
+/* CSS icons */
+.icon--close {
+    height: rem(20px);
+    padding: rem(10px);
+    position: relative;
+    width: rem(20px);
+    z-index: 20;
+
+    &:before,
+    &:after {
+        background: $color-primary;
+        content: '';
+        height: rem(2px);
+        width: rem(20px);
+        left: 0;
+        position: absolute;
+        top: 50%;
+    }
+
+    &:before {
+        transform: rotate3d(0, 0, 1, 45deg);
+    }
+
+    &:after {
+        transform: rotate3d(0, 0, 1, -45deg);
+    }
+}

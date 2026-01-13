@@ -1,0 +1,17 @@
+@use '../functions/rem' as *;
+@use '../_vars' as *;
+@use '../mixins/breakpoint' as *;
+
+.product {
+    .description {
+        color: $grey;
+        line-height: 1.6;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+            margin-bottom: 0;
+        }
+    }
+}

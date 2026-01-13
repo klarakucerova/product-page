@@ -1,0 +1,13 @@
+@use '../functions/rem' as *;
+@use '../_vars' as *;
+@use '../mixins/breakpoint' as *;
+
+.font {
+    &--18 {
+        font-size: rem(18px);
+    }
+}
+
+.text--center {
+    text-align: center;
+}

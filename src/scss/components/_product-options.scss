@@ -1,0 +1,62 @@
+@use '../functions/rem' as *;
+@use '../_vars' as *;
+@use '../mixins/breakpoint' as *;
+@use '../mixins/accessible-hide' as *;
+
+.product-option {
+    margin: 2rem 0;
+}
+
+.options {
+    align-items: stretch;
+    display: flex;
+    gap: .5rem;
+    margin-top: 1rem;
+}
+
+.option-btn {
+    background-color: transparent;
+    border: 1px solid $grey-light;
+    border-radius: rem(8px);
+    padding: 1rem;
+
+    &.active {
+        border-color: $black;
+    }
+}
+
+.selected-name {
+    color: $grey-dark;
+    font-size: rem(12px);
+    font-weight: $font-weight-regular;
+    margin-left: 1ch;
+}
+
+.product-option--color {
+    .options {
+        gap: 1rem;
+    }
+    .name {
+        @include accessible-hide();
+    }
+
+    .option-btn {
+        border: 1px solid transparent;
+        border-radius: 50%;
+        height: rem(40px);
+        overflow: hidden;
+        padding: 0;
+        width: rem(40px);
+
+        &.active {
+            border-color: $black;
+        }
+    }
+
+    .color-swatch {
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+    }
+}
+

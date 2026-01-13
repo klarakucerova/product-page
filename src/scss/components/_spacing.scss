@@ -1,0 +1,26 @@
+@use '../functions/rem' as *;
+@use '../_vars' as *;
+@use '../mixins/breakpoint' as *;
+
+.mb {
+    &--2 {
+        margin-bottom: 2rem;
+    }
+}
+
+.mt {
+    &--1 {
+        margin-top: 1rem;
+    }
+
+    &--2 {
+        margin-top: 2rem;
+    }
+}
+
+.mw {
+    &--900 {
+        max-width: rem(900px);
+        margin: 0 auto;
+    }
+}

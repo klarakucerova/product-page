@@ -1,0 +1,5 @@
+@use '../mixins/accessible-hide' as *;
+
+.u-accessible-hide {
+    @include accessible-hide();
+}
