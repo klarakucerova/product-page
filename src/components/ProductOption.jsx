@@ -35,7 +35,7 @@ function ProductOption({
             {/* Dropdown for keyboard variant */}
             {variant === 'keyboard' ? (
                 <div className="options">
-                    <div class="select">
+                    <div className="select">
                         <select 
                             value={selected} 
                             onChange={(e) => onSelect(e.target.value)}

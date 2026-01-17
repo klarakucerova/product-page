@@ -18,6 +18,16 @@
     font-size: rem(16px);
 }
 
+.icon-svg--save {
+    font-size: rem(22px);
+    stroke: $blue;
+    fill: $white;
+
+    &:hover {
+        fill: $blue;
+    }
+}
+
 /* CSS icons */
 .icon--close {
     height: rem(20px);

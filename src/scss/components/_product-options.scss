@@ -6,6 +6,10 @@
 .product-option {
     margin: 2rem 0;
 
+    &:last-child {
+        margin-bottom: 3rem;
+    }
+
     .label {
         font-size: rem(15px);
         font-weight: $font-weight-semibold;
@@ -21,20 +25,66 @@
 }
 
 .options {
-    align-items: stretch;
     display: flex;
-    gap: .5rem;
+    flex-direction: column;
+    gap: .7rem;
     margin-top: 1rem;
+    
+    @include breakpoint(small) {
+        align-items: stretch;
+        flex-direction: row;
+        gap: .5rem;
+    }
+
+    .price-badge {
+        color: rgba($grey, .8);
+        font-size: rem(12px);
+        font-weight: 300;
+        line-height: 1;
+        transition: all 0.3s ease-in-out;
+        
+        @include breakpoint(small) {
+            display: block;
+            margin-top: .5rem;
+        }
+    }
 }
 
 .option-btn {
+    align-items: center;
     background-color: transparent;
     border: 1px solid $grey-light;
     border-radius: rem(8px);
+    display: flex;
+    font-size: rem(15px);
+    justify-content: space-between;
+    outline: 1px solid transparent;
     padding: 1rem;
+    text-align: left;
+    transition: all 0.3s ease-in-out;
+    width: 100%;
+    
+    @include breakpoint(small) {
+        align-items: start;
+        flex-direction: column;
+    }
 
     &.active {
-        border-color: $black;
+        border-color: $blue;
+        outline-color: $blue;
+    }
+
+    &.active:hover {
+        border-color: $blue;
+    }
+
+    &:hover {
+        border-color: $grey-dark;
+
+        .price-badge {
+            color: $blue;
+            font-size: rem(16px);
+        }
     }
 }
 
@@ -47,6 +97,7 @@
 
 .product-option--color {
     .options {
+        flex-direction: row;
         gap: 1rem;
     }
     .name {
@@ -57,13 +108,19 @@
         border: 3px solid $white;
         border-radius: 50%;
         height: rem(40px);
-        outline: 1px solid transparent;
+        outline: 1.5px solid transparent;
         overflow: hidden;
         padding: 0;
         width: rem(40px);
 
+        &:hover {
+            border-color: $white;
+            outline-color: rgba($grey, .2);
+        }
+
         &.active {
-            outline-color: $black;
+            border-color: $white;
+            outline-color: $blue;
         }
     }
 
@@ -74,3 +131,16 @@
     }
 }
 
+.product-option--screenSize {
+    .option-btn {
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+        min-width: 160px;
+        width: auto;
+
+        .price-badge {
+            margin-top: 0;
+        }
+    }
+}

@@ -249,13 +249,13 @@ embed {
     max-width: 100%;
 }
 
-input[type="text"],
-input[type="search"],
-select,
-textarea {
-    font-size: 16px;
-    font-size: max(16px, 1rem);
-}
+// input[type="text"],
+// input[type="search"],
+// select,
+// textarea {
+//     font-size: 16px;
+//     font-size: max(16px, 1rem);
+// }
 
 button {
     -webkit-tap-highlight-color: transparent;
@@ -333,4 +333,14 @@ em {
 ::selection {
     background-color: rgba($blue, .4);
     color: $black;
+}
+
+small {
+    color: rgba($grey, .8);
+    display: inline-block;
+    font-size: rem(12px);
+    font-weight: 400;
+    letter-spacing: -.01em;
+    line-height: 1.45;
+    margin: 2rem 0;
 }

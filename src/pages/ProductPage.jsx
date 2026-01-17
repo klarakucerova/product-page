@@ -1,8 +1,17 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ProductOption from '../components/ProductOption'
 import ProductActions from '../components/ProductActions'
+import SavedConfigModal from '../components/SavedConfigModal'
+import { 
+    generateConfigHash, 
+    saveConfiguration, 
+    loadConfiguration 
+} from '../utils/configStorage'
 
-function ProductPage({ conditionClass }) {
+function ProductPage() {
+    const [showSavedConfig, setShowSavedConfig] = useState(false)
+    const [currentConfigHash, setCurrentConfigHash] = useState(null)
+    
     const [selectedColor, setSelectedColor] = useState('skyblue')
     const [selectedScreenSize, setSelectedScreenSize] = useState('13')
     const [selectedMemory, setSelectedMemory] = useState('16GB')
@@ -61,6 +70,101 @@ function ProductPage({ conditionClass }) {
         { id: 'swiss', name: 'Backlit Magic Keyboard with Touch ID - Swiss', price: 0 },
         { id: 'ukrainian', name: 'Backlit Magic Keyboard with Touch ID - Ukrainian', price: 0 }
     ]
+
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search)
+        const configHash = params.get('config')
+        if (configHash) {
+            const config = loadConfiguration(configHash)
+            if (config) {
+                setSelectedColor(config.color)
+                setSelectedScreenSize(config.screen)
+                setSelectedMemory(config.memory)
+                setSelectedStorage(config.storage)
+                setSelectedPowerAdapter(config.power)
+                setSelectedKeyboard(config.keyboard)
+            }
+        }
+    }, [])
+
+    useEffect(() => {
+        const config = getCurrentConfig()
+        const hash = generateConfigHash(config)
+        setCurrentConfigHash(hash)
+    }, [selectedColor, selectedScreenSize, selectedMemory, selectedStorage, selectedPowerAdapter, selectedKeyboard])
+
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search)
+        const configHash = params.get('config')
+        if (configHash) {
+            const config = loadConfiguration(configHash)
+            if (config) {
+                setSelectedColor(config.color)
+                setSelectedScreenSize(config.screen)
+                setSelectedMemory(config.memory)
+                setSelectedStorage(config.storage)
+                setSelectedPowerAdapter(config.power)
+                setSelectedKeyboard(config.keyboard)
+            }
+        }
+    }, [])
+
+    const updateURL = (hash) => {
+        const newUrl = `${window.location.pathname}?config=${hash}`
+        window.history.pushState({}, '', newUrl)
+    }
+
+    // Get current configuration
+    const getCurrentConfig = () => ({
+        color: selectedColor,
+        screen: selectedScreenSize,
+        memory: selectedMemory,
+        storage: selectedStorage,
+        power: selectedPowerAdapter,
+        keyboard: selectedKeyboard
+    })
+
+    // Handle Save
+    const handleSave = () => {
+        const config = getCurrentConfig()
+        const hash = saveConfiguration(config)
+        updateURL(hash)
+        setCurrentConfigHash(hash)
+        window.dispatchEvent(new CustomEvent('configsUpdated'))
+    }
+
+    const handleDelete = () => {
+        console.log('Configuration deleted')
+    }
+
+    // Handle Share
+    const handleShare = async () => {
+        const config = getCurrentConfig()
+        const hash = saveConfiguration(config)
+        
+        const shareUrl = `${window.location.origin}${window.location.pathname}?config=${hash}`
+        
+        try {
+            await navigator.clipboard.writeText(shareUrl)
+        } catch (err) {
+            prompt('Copy this link:', shareUrl)
+        }
+    }
+
+    const handleLoadSaved = () => {
+        const config = loadConfiguration()
+        if (config) {
+            setSelectedColor(config.color)
+            setSelectedScreenSize(config.screen)
+            setSelectedMemory(config.memory)
+            setSelectedStorage(config.storage)
+            setSelectedPowerAdapter(config.power)
+            setSelectedKeyboard(config.keyboard)
+            updateURL(config.hash)
+            setCurrentConfigHash(config.hash)
+        }
+        setShowSavedConfig(false)
+    }
 
     const currentColor = colorOptions.find(opt => opt.id === selectedColor);
     const currentScreenSize = screenSizeOptions.find(opt => opt.id === selectedScreenSize);
@@ -173,6 +277,8 @@ function ProductPage({ conditionClass }) {
                             <p>How much storage you need depends on how you use your Mac. The more storage you have, the more files your Mac can hold and the faster it can access them when needed.</p>
                             <p>A good way to figure out your storage needs is to check how much storage you’re using on your current computer. On a Mac, go to System Settings > General > Storage. If you’re nearing your limit, it’s a good idea to consider a larger capacity.</p>
                             <p>Note: Storage is not user accessible. If you think you’ll need more internal storage in the future, you’ll want to select your capacity with that in mind now.</p>
+
+                            <small>1. 1GB = 1 billion bytes and 1TB = 1 trillion bytes; actual formatted capacity less.</small>
                         </div>
                     }
                 />
@@ -192,6 +298,7 @@ function ProductPage({ conditionClass }) {
                             <p>With a convenient compact size and folding prongs, this adapter features two USB-C ports so you can charge two devices at once.</p>
                             <h4>70W USB-C Power Adapter</h4>
                             <p>Choose this adapter if you want to fast-charge your MacBook Air, charging your battery up to 50 percent in 35 minutes.³</p>
+                            <small>3. Testing conducted by Apple in January 2025 using preproduction 13-inch MacBook Air systems with Apple M4, 10-core CPU, and 8-core GPU, and preproduction 15-inch MacBook Air systems with Apple M4, 10-core CPU, and 10-core GPU, all configured with 16GB of RAM and 256GB SSD. Tested with Apple 70W USB-C Power Adapter (Model A2743) with USB-C to MagSafe 3 Cable (Model A2363). Fast-charge testing conducted with drained MacBook Air units. Times measured from the beginning of wake from hibernate, or from the appearance of the Apple logo as the unit started up. Charge time varies with settings and environmental factors; actual results will vary.</small>
                         </div>
                     }
                 />
@@ -219,6 +326,20 @@ function ProductPage({ conditionClass }) {
         <ProductActions 
             totalPrice={totalPrice}
             onAddToCart={() => console.log('Added to cart')}
+            onSave={handleSave}
+            onDelete={handleDelete}
+            onShare={handleShare}
+            onViewSaved={() => setShowSavedConfig(true)}
+            currentConfigHash={currentConfigHash}
+        />
+
+        <SavedConfigModal 
+            isOpen={showSavedConfig}
+            onClose={() => setShowSavedConfig(false)}
+            onLoadConfig={handleLoadSaved}
+            powerAdapterOptions={powerAdapterOptions}  // Add this
+            keyboardOptions={keyboardOptions}  // Add this
+            colorOptions={colorOptions}  // Add this
         />
     </>
   );

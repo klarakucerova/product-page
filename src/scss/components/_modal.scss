@@ -17,21 +17,32 @@
 
     &__sidebar {
         background: $white;
-        color: $grey-dark;
+        color: $grey;
         display: flex;
         flex-direction: column;
         height: 100vh;
         left: 100%;
-        padding: 4rem 2rem;
+        padding: 4rem 3rem;
         position: fixed;
         top: 0;
         transition: all 0.3s ease-in-out;
-        max-width: 35rem;
         width: 100%;
         z-index: 10;
 
+        @include breakpoint(35rem) {
+            max-width: 35rem;
+        }
+
         &.open {
-            left: calc(100% - 35rem);
+            left: 0;
+            
+            @include breakpoint(35rem) {
+                left: calc(100% - 35rem);
+            }
+        }
+
+        h4 {
+            color: $black;
         }
     }
 
@@ -45,6 +56,11 @@
             color: $black;
             font-size: rem(20px);
         }
+    }
+
+    &__body {
+        height: 100%;
+        overflow-x: scroll;
     }
 
     &__close {
