@@ -28,6 +28,29 @@
     }
 }
 
+.icon-svg--share {
+    font-size: rem(22px);
+}
+
+.icon-svg--delete {
+    font-size: rem(16px);
+}
+
+.icon-svg--share,
+.icon-svg--delete {
+    transition: all .4s ease;
+    
+    &:hover {
+        fill: $blue;
+    }
+}
+
+.icon-svg--heart {
+    font-size: rem(16px);
+    fill: $white;
+    margin-left: 5px;
+}
+
 /* CSS icons */
 .icon--close {
     height: rem(20px);

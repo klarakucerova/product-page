@@ -1,0 +1,60 @@
+@use '../functions/rem' as *;
+@use '../_vars' as *;
+@use '../mixins/breakpoint' as *;
+
+.gallery--product {
+    overflow: hidden;
+    margin-bottom: 4rem;
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        display: inline-block;
+
+        &:after {
+            color: $white;
+        }
+    }
+
+    .swiper-wrapper {
+        height: auto!important;
+    }
+
+    .slider__frame {
+        height: 100%;
+
+        img {
+            height: 100%;
+        }
+    }
+
+    @include breakpoint(medium) {
+        margin-bottom: 1rem;
+    }
+
+    .gallery-main {
+        margin-bottom: .5rem;
+    }
+
+    .swiper-button-next,
+    .swiper-button-prev {
+        height: rem(35px);
+        width: rem(35px);
+        margin-top: 0;
+
+        &:after {
+            content: none;
+        }
+
+        background-color: $white;
+        border-radius: 50%;
+        color: $grey-darker;
+    }
+
+    .swiper-button-next {
+        transform: translateY(-50%);
+    }
+
+    .swiper-button-prev {
+        transform: translateY(-50%) rotate(180deg);
+    }
+}

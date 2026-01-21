@@ -69,19 +69,23 @@ function SavedConfigModal({ isOpen, onClose, onLoadConfig, powerAdapterOptions, 
                                     className="btn btn--primary"
                                     onClick={onLoadConfig}
                                 >
-                                    Load Configuration
+                                    Load Config
                                 </button>
                                 <button 
-                                    className="btn btn--secondary"
+                                    className="btn btn--icon"
                                     onClick={handleShare}
                                 >
-                                    Share
+                                    <svg className="icon-svg--share" width="20" height="30">
+                                        <use xlinkHref="#icon-share"></use>
+                                    </svg>
                                 </button>
                                 <button 
-                                    className="btn btn--danger"
+                                    className="btn btn--icon"
                                     onClick={handleDelete}
                                 >
-                                    Delete
+                                    <svg className="icon-svg--delete" width="20" height="30">
+                                        <use xlinkHref="#icon-trash"></use>
+                                    </svg>
                                 </button>
                             </div>
                         </div>

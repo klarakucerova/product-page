@@ -64,7 +64,7 @@ function ProductActions({
                     </button>
 
                     <button 
-                        className={`btn btn--save ${isCurrentConfigSaved ? 'is-saved' : ''}`} 
+                        className={`btn btn--icon btn--save ${isCurrentConfigSaved ? 'is-saved' : ''}`} 
                         onClick={handleToggleSave}
                         data-tooltip={isCurrentConfigSaved ? "Remove" : "Save"}
                     >
@@ -73,7 +73,7 @@ function ProductActions({
                         </svg>
                     </button>
                     {hasSavedConfig && (
-                        <button className="btn btn--view-saved" onClick={onViewSaved}>
+                        <button className="btn btn--icon btn--view-saved" onClick={onViewSaved}>
                             View Saved
                         </button>
                     )}

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import ProductOption from '../components/ProductOption'
 import ProductActions from '../components/ProductActions'
 import SavedConfigModal from '../components/SavedConfigModal'
@@ -7,6 +7,14 @@ import {
     saveConfiguration, 
     loadConfiguration 
 } from '../utils/configStorage'
+import { productImages } from '../data/productImages';
+
+import { Navigation, Thumbs } from 'swiper/modules';
+
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/thumbs'
+
 
 function ProductPage() {
     const [showSavedConfig, setShowSavedConfig] = useState(false)
@@ -18,6 +26,15 @@ function ProductPage() {
     const [selectedStorage, setSelectedStorage] = useState('512GB')
     const [selectedPowerAdapter, setSelectedPowerAdapter] = useState('35W')
     const [selectedKeyboard, setSelectedKeyboard] = useState('us-english')
+
+    const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+    const thumbsSwiperRef = useRef(null)
+    const mainSwiperRef = useRef(null)
+
+    const imageKey = `${selectedScreenSize}-${selectedColor}`;
+    const images = productImages[imageKey] || [];
+    const currentImage = images[currentImageIndex] || images[0];
 
     const colorOptions = [
         { id: 'skyblue', name: 'Sky Blue', value: '#CAD8DF', price: 0 },
@@ -109,6 +126,43 @@ function ProductPage() {
         }
     }, [])
 
+    useEffect(() => {
+        if (images.length === 0) return
+
+        const thumbsSwiper = new Swiper('.gallery-thumbs', {
+            spaceBetween: 8,
+            slidesPerView: 4,
+            freeMode: true,
+            watchSlidesProgress: true,
+            breakpoints: {
+                0: { slidesPerView: 2 },
+                480: { slidesPerView: 3 },
+                768: { slidesPerView: 4 }
+            }
+        })
+
+        thumbsSwiperRef.current = thumbsSwiper
+
+        const mainSwiper = new Swiper('.gallery-main', {
+            spaceBetween: 8,
+            modules: [Thumbs, Navigation],
+            thumbs: {
+                swiper: thumbsSwiper
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev'
+            }
+        })
+
+        mainSwiperRef.current = mainSwiper
+
+        return () => {
+            if (thumbsSwiper) thumbsSwiper.destroy()
+            if (mainSwiper) mainSwiper.destroy()
+        }
+    }, [images])
+
     const updateURL = (hash) => {
         const newUrl = `${window.location.pathname}?config=${hash}`
         window.history.pushState({}, '', newUrl)
@@ -172,7 +226,7 @@ function ProductPage() {
     const currentStorage = storageOptions.find(opt => opt.id === selectedStorage);
     const currentPowerAdapter = powerAdapterOptions.find(opt => opt.id === selectedPowerAdapter);
     const currentKeyboard = keyboardOptions.find(opt => opt.id === selectedKeyboard);
-    const currentImage = `/images/${selectedScreenSize}/${selectedColor}.jpg`;
+    // const currentImage = `/images/${selectedScreenSize}/${selectedColor}.jpg`;
 
     const BASE_PRICE = 1099;
 
@@ -194,11 +248,48 @@ function ProductPage() {
         <div className="container grid grid--product product">  
             <div className="grid__item">
                 <div className="product-image">
-                    <img 
-                        src={currentImage} 
-                        alt={`MacBook Air ${selectedScreenSize} in ${selectedColor}`}
-                        key={`${selectedScreenSize}-${selectedColor}`}
-                    />
+                    <div className="gallery-js gallery--product">
+                        <div className="slider gallery-main">
+                            <div className="swiper-wrapper">
+                                {images.map((img, index) => (
+                                <div className="swiper-slide" key={index}>
+                                    <div className="slider__frame">
+                                        <img 
+                                            src={img} 
+                                            alt={`MacBook Air ${selectedScreenSize} in ${selectedColor} - view ${index + 1}`}
+                                        />
+                                    </div>
+                                </div>
+                            ))}
+                            </div>
+
+                            <div>
+                                <div className="swiper-button-next">
+                                    <svg className="icon-svg--arrow" width="40" height="40"><use xlinkHref="#icon-arrow"></use></svg>
+                                </div>
+                                <div className="swiper-button-prev">
+                                    <svg className="icon-svg--arrow" width="40" height="40"><use xlinkHref="#icon-arrow"></use></svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="slider slider--thumbs gallery-thumbs">
+                            <div className="swiper-wrapper">
+                                {images.map((img, index) => (
+                                    <div 
+                                        className="swiper-slide" 
+                                        key={index}
+                                        onClick={() => setCurrentImageIndex(index)}
+                                    >
+                                        <img 
+                                            src={img} 
+                                            alt={`MacBook Air ${selectedScreenSize} in ${selectedColor} - view ${index + 1}`}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className="grid__item">

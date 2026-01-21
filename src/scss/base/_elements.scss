@@ -175,6 +175,10 @@ select {
 select {
     border-radius: .5rem;
     max-width: 100%;
+    overflow: hidden;
+    padding-right: rem(30px);
+    text-overflow: ellipsis;
+    white-space: nowrap;
 
     &:focus-visible {
         border-color: $grey;
@@ -248,14 +252,6 @@ object,
 embed {
     max-width: 100%;
 }
-
-// input[type="text"],
-// input[type="search"],
-// select,
-// textarea {
-//     font-size: 16px;
-//     font-size: max(16px, 1rem);
-// }
 
 button {
     -webkit-tap-highlight-color: transparent;
