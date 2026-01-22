@@ -22,8 +22,13 @@
     letter-spacing: .011em;
     align-items: center;
     display: flex;
+    justify-content: center;
     line-height: 1;
     margin-bottom: 0;
+    
+    @include breakpoint(small) {
+        justify-content: flex-start;
+    }
 
     .icon-svg--logo {
         margin: 0 .5rem 2px 0;
