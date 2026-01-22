@@ -3,7 +3,11 @@
 @use '../mixins/breakpoint' as *;
 
 .product {
-    margin: 1.5rem auto 6rem;
+    margin: .5rem auto 6rem;
+
+    @include breakpoint(medium) {
+        margin-top: 1.5rem;
+    }
 
     .description {
         color: $grey;
@@ -34,21 +38,42 @@
     right: 0;
 
     .inner {
-        align-items: center;
+        align-items: stretch;
         display: flex;
+        flex-direction: column;
+        gap: .5rem;
         justify-content: flex-end;
         margin: 0 auto;
         max-width: $max-width;
+        
+        @include breakpoint(small) {
+            align-items: center;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
     }
 
     .actions {
         display: flex;
         gap: 1rem;
+
+        @include breakpoint(small) {
+            flex-direction: row;
+        }
+
+        .btn--primary {
+            width: 100%;
+        }
     }
 
     .price {
         font-size: rem(18px);
         font-weight: $font-weight-bold;
         margin-right: 2rem;
+        text-align: center;
+
+        @include breakpoint(small) {
+            text-align: right;
+        }
     }
 }

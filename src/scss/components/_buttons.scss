@@ -32,6 +32,12 @@
         letter-spacing: 0;
         text-transform: none;
 
+        @include breakpoint(small) {
+            margin: .5rem 0 0 0;
+            text-align: right;
+            width: 100%;
+        }
+
         &:hover {
             text-decoration: underline;
         }

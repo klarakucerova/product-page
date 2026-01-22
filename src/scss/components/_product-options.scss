@@ -13,14 +13,23 @@
     .label {
         font-size: rem(15px);
         font-weight: $font-weight-semibold;
-        margin: 0;
+        margin-bottom: 1rem;
+
+        @include breakpoint(small) {
+            margin-bottom: 0;
+        }
     }
 
     .option__label {
         display: flex;
-        align-items: center;
+        flex-direction: column;
         justify-content: space-between;
         margin-bottom: .5rem;
+        
+        @include breakpoint(small) {
+            align-items: center;
+            flex-direction: row;
+        }
     }
 }
 

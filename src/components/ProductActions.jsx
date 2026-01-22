@@ -63,21 +63,21 @@ function ProductActions({
                         Add to Cart
                     </button>
 
-                    <button 
-                        className={`btn btn--icon btn--save ${isCurrentConfigSaved ? 'is-saved' : ''}`} 
-                        onClick={handleToggleSave}
-                        data-tooltip={isCurrentConfigSaved ? "Remove" : "Save"}
-                    >
-                        <svg className="icon-svg--save" width="20" height="30">
-                            <use xlinkHref="#icon-bookmark"></use>
-                        </svg>
-                    </button>
-                    {hasSavedConfig && (
-                        <button className="btn btn--icon btn--view-saved" onClick={onViewSaved}>
-                            View Saved
+                        <button 
+                            className={`btn btn--icon btn--save ${isCurrentConfigSaved ? 'is-saved' : ''}`} 
+                            onClick={handleToggleSave}
+                            data-tooltip={isCurrentConfigSaved ? "Remove" : "Save"}
+                        >
+                            <svg className="icon-svg--save" width="20" height="30">
+                                <use xlinkHref="#icon-bookmark"></use>
+                            </svg>
                         </button>
-                    )}
                 </div>
+                        {hasSavedConfig && (
+                            <button className="btn btn--icon btn--view-saved" onClick={onViewSaved}>
+                                View Saved
+                            </button>
+                        )}
             </div>
         </div>
     );
