@@ -31,11 +31,15 @@
 .product-actions {
     background-color: $white;
     box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.15);
-    padding: 2rem 2rem;
+    padding: 1rem 1.5rem;
     bottom: 0;
     left: 0;
     position: fixed;
     right: 0;
+    
+    @include breakpoint(small) {
+        padding: 2rem 2rem;
+    }
 
     .inner {
         align-items: stretch;
@@ -69,10 +73,10 @@
     .price {
         font-size: rem(18px);
         font-weight: $font-weight-bold;
-        margin-right: 2rem;
         text-align: center;
-
+        
         @include breakpoint(small) {
+            margin-right: 2rem;
             text-align: right;
         }
     }

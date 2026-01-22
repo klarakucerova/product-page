@@ -30,6 +30,7 @@
         color: $blue;
         font-weight: 300;
         letter-spacing: 0;
+        margin-top: .5rem;
         text-transform: none;
 
         @include breakpoint(small) {

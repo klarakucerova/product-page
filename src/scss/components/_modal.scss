@@ -22,7 +22,7 @@
         flex-direction: column;
         height: 100vh;
         left: 100%;
-        padding: 4rem 3rem;
+        padding: 4rem 2rem;
         position: fixed;
         top: 0;
         transition: all 0.3s ease-in-out;
@@ -31,6 +31,7 @@
 
         @include breakpoint(35rem) {
             max-width: 35rem;
+            padding: 4rem 3rem;
         }
 
         &.open {
@@ -76,7 +77,11 @@
         justify-content: center;
         position: absolute;
         top: 1.5rem;
-        right: 2rem;
+        right: 1.5rem;
+        
+        @include breakpoint(35rem) {
+            right: 2rem;
+        }
     }
 
 }
