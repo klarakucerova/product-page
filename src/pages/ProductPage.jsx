@@ -131,13 +131,13 @@ function ProductPage() {
 
         const thumbsSwiper = new Swiper('.gallery-thumbs', {
             spaceBetween: 8,
-            slidesPerView: 4,
+            slidesPerView: 5,
             freeMode: true,
             watchSlidesProgress: true,
             breakpoints: {
-                0: { slidesPerView: 2 },
-                480: { slidesPerView: 3 },
-                768: { slidesPerView: 4 }
+                0: { slidesPerView: 3 },
+                480: { slidesPerView: 5 },
+                768: { slidesPerView: 5 }
             }
         })
 
@@ -145,6 +145,7 @@ function ProductPage() {
 
         const mainSwiper = new Swiper('.gallery-main', {
             spaceBetween: 8,
+            speed: 600,
             modules: [Thumbs, Navigation],
             thumbs: {
                 swiper: thumbsSwiper
@@ -152,10 +153,19 @@ function ProductPage() {
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev'
+            },
+            on: {
+                slideChange: function() {
+                    setCurrentImageIndex(this.activeIndex)
+                }
             }
         })
 
         mainSwiperRef.current = mainSwiper
+
+        if (mainSwiper && currentImageIndex < images.length) {
+            mainSwiper.slideTo(currentImageIndex, 0)
+        }
 
         return () => {
             if (thumbsSwiper) thumbsSwiper.destroy()
@@ -163,12 +173,18 @@ function ProductPage() {
         }
     }, [images])
 
+    useEffect(() => {
+        if (mainSwiperRef.current && images.length > 0) {
+            const targetIndex = Math.min(currentImageIndex, images.length - 1)
+            mainSwiperRef.current.slideTo(targetIndex, 0)
+        }
+    }, [selectedColor, selectedScreenSize])
+
     const updateURL = (hash) => {
         const newUrl = `${window.location.pathname}?config=${hash}`
         window.history.pushState({}, '', newUrl)
     }
 
-    // Get current configuration
     const getCurrentConfig = () => ({
         color: selectedColor,
         screen: selectedScreenSize,
@@ -178,7 +194,6 @@ function ProductPage() {
         keyboard: selectedKeyboard
     })
 
-    // Handle Save
     const handleSave = () => {
         const config = getCurrentConfig()
         const hash = saveConfiguration(config)
@@ -191,7 +206,6 @@ function ProductPage() {
         console.log('Configuration deleted')
     }
 
-    // Handle Share
     const handleShare = async () => {
         const config = getCurrentConfig()
         const hash = saveConfiguration(config)
@@ -226,7 +240,6 @@ function ProductPage() {
     const currentStorage = storageOptions.find(opt => opt.id === selectedStorage);
     const currentPowerAdapter = powerAdapterOptions.find(opt => opt.id === selectedPowerAdapter);
     const currentKeyboard = keyboardOptions.find(opt => opt.id === selectedKeyboard);
-    // const currentImage = `/images/${selectedScreenSize}/${selectedColor}.jpg`;
 
     const BASE_PRICE = 1099;
 

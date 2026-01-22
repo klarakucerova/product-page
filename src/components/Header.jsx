@@ -7,8 +7,7 @@ function Header({ conditionClass }) {
             </div>
             <header className="header">  
                 <h1 className="logo">
-                    <a href="/"><svg className="icon-svg--logo" width="40" height="40"><use xlinkHref="#icon-logo"></use></svg></a>
-                    <span className="">MacBook Air</span>
+                    <svg className="icon-svg--logo" width="40" height="40"><use xlinkHref="#icon-logo"></use></svg><span className="">MacBook Air</span>
                 </h1>
             </header>
         </>

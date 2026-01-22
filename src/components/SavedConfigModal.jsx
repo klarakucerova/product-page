@@ -1,8 +1,12 @@
 import { useState, useEffect } from 'react'
 import { getSavedConfiguration, deleteSavedConfiguration } from '../utils/configStorage'
 
+import { copyLink } from '../utils/copyLink';
+import { ToastNotification } from '../components/ToastNotification';
+
 function SavedConfigModal({ isOpen, onClose, onLoadConfig, powerAdapterOptions, keyboardOptions, colorOptions  }) {
     const [savedConfig, setSavedConfig] = useState(null)
+    const [showToast, setShowToast] = useState(false);
 
     useEffect(() => {
         if (isOpen) {
@@ -21,9 +25,14 @@ function SavedConfigModal({ isOpen, onClose, onLoadConfig, powerAdapterOptions, 
         if (savedConfig) {
             const shareUrl = `${window.location.origin}${window.location.pathname}?config=${savedConfig.hash}`
             navigator.clipboard.writeText(shareUrl)
-            alert('Link copied!')
         }
-    }
+        console.log('Sharing...');
+    };
+
+    const handleShareAndCopy = () => {
+        handleShare();
+        copyLink(window.location.href, setShowToast);
+    };
 
     const getPowerAdapterName = () => {
         const adapter = powerAdapterOptions?.find(opt => opt.id === savedConfig.power)
@@ -73,12 +82,16 @@ function SavedConfigModal({ isOpen, onClose, onLoadConfig, powerAdapterOptions, 
                                 </button>
                                 <button 
                                     className="btn btn--icon"
-                                    onClick={handleShare}
+                                    onClick={handleShareAndCopy}
                                 >
                                     <svg className="icon-svg--share" width="20" height="30">
-                                        <use xlinkHref="#icon-share"></use>
+                                    <use xlinkHref="#icon-share"></use>
                                     </svg>
                                 </button>
+
+                                <ToastNotification showToast={showToast} />
+
+
                                 <button 
                                     className="btn btn--icon"
                                     onClick={handleDelete}

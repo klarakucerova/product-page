@@ -1,4 +1,6 @@
-
+@use '../functions/rem' as *;
+@use '../_vars' as *;
+@use '../mixins/breakpoint' as *;
 
 .slider {
     &--thumbs {
@@ -10,15 +12,14 @@
         }
 
         .swiper-slide {
+            border: .5px solid rgba($grey-light, .7);
+            cursor: pointer;
+            display: block;
             flex-shrink: 0;
-            width: 100%;
             height: 100%;
             position: relative;
             transition-property: transform;
-            display: block;
-
-            aspect-ratio: 1.45;
-            cursor: pointer;
+            width: 100%;
         }
     }
 }

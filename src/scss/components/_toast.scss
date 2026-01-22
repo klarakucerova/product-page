@@ -1,0 +1,39 @@
+@use '../functions/rem' as *;
+@use '../_vars' as *;
+@use '../mixins/breakpoint' as *;
+
+.toast {
+    font-size: rem(14px);
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: $white;
+    border-left: 3px solid $blue;
+    color: $black;
+    padding: 1rem 1.5rem 1rem 1.3rem;
+    box-shadow: 0 0 20px 0 rgba($black, 0.3);
+    display: flex;
+    align-items: center;
+    gap: rem(12px);
+    transition: all 0.3s ease-in-out;
+
+    &.closed {
+        transform: translateY(4rem);
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    &.active {
+        transform: translateY(0);
+        opacity: 1;
+        font-size: 16px;
+    }
+
+    .icon-svg--check {
+        border: 1px solid $blue;
+        border-radius: 50%;
+        font-size: rem(24px);
+        fill: $blue;
+        padding: rem(6px);
+    }
+}
